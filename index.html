@@ -1,275 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Game Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Interstellar Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --alabaster: #d9d9d9;
-      --slate: #6969b3;
-      --indigo: #533a7b;
-      --smoke: #eff2ef;
-      --coffee: #25171a;
-    }
+<style>
+:root {
+  --bg: #0b0b0d;
+  --bg-soft: #121214;
+  --text: #ffffff;
+  --muted: #a0a0a0;
+  --accent: #6969b3;
+}
 
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, sans-serif;
-    }
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: var(--coffee);
-      color: var(--alabaster);
-    }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-    header {
-      background: var(--indigo);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* ===== TOP BAR ===== */
 
-    header h1 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: var(--smoke);
-    }
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+  z-index: 10;
+}
 
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
 
-    nav button {
-      background: transparent;
-      border: none;
-      color: var(--smoke);
-      cursor: pointer;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
+nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
 
-    nav button:hover,
-    nav button.active {
-      background: var(--slate);
-    }
+nav span {
+  cursor: pointer;
+  color: var(--muted);
+}
 
-    main {
-      padding: 2rem;
-    }
+nav span:hover {
+  color: var(--text);
+}
 
-    .tab {
-      display: none;
-    }
+/* ===== CENTER CONTENT ===== */
 
-    .tab.active {
-      display: block;
-    }
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-    /* ===== DARK CARDS ===== */
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: 0.2em;
+  margin: 0;
+}
 
-    .card {
-      background: #1e1417;
-      border: 1px solid #2c1d22;
-      padding: 1.5rem;
-      border-radius: 14px;
-    }
+.hero p {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
 
-    .card h2 {
-      margin-top: 0;
-      color: var(--smoke);
-    }
+/* ===== SEARCH BAR ===== */
 
-    /* ===== HOME LAYOUT ===== */
+.search {
+  margin-top: 2.5rem;
+  width: min(520px, 90%);
+}
 
-    .home-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
+.search input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: var(--bg-soft);
+  border: none;
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+}
 
-    @media (max-width: 900px) {
-      .home-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+.search input::placeholder {
+  color: #777;
+}
 
-    /* ===== PROFILE ===== */
+/* ===== WAVES ===== */
 
-    .profile {
-      display: flex;
-      gap: 1.2rem;
-      align-items: center;
-    }
+.waves {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40vh;
+  overflow: hidden;
+}
 
-    .profile img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--slate);
-    }
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(circle at center, #1a1a1f, transparent 70%);
+  opacity: 0.35;
+  animation: drift 20s linear infinite;
+}
 
-    .profile h3 {
-      margin: 0;
-      color: var(--smoke);
-    }
+.wave:nth-child(2) {
+  animation-duration: 30s;
+  opacity: 0.2;
+}
 
-    .profile p {
-      margin-top: 0.3rem;
-      font-size: 0.9rem;
-      color: var(--alabaster);
-    }
-
-    /* ===== GAME CARDS ===== */
-
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .game-card {
-      background: var(--indigo);
-      border-radius: 14px;
-      padding: 1.5rem;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
-    }
-
-    .game-card h3 {
-      margin: 0 0 0.5rem;
-      color: var(--smoke);
-    }
-
-    .game-card p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--alabaster);
-    }
-
-    .game-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border: 2px solid var(--slate);
-      box-shadow: 0 12px 30px rgba(105, 105, 179, 0.4);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.85rem;
-      color: #aaa;
-    }
-  </style>
+@keyframes drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>🎮 YourUsername's Game Hub</h1>
-    <nav>
-      <button class="active" onclick="openTab('home')">Home</button>
-      <button onclick="openTab('games')">Games</button>
-      <button onclick="openTab('casino')">Casino</button>
-      <button onclick="openTab('settings')">Settings</button>
-    </nav>
-  </header>
 
-  <main>
-    <!-- HOME -->
-    <section id="home" class="tab active">
-      <div class="home-grid">
-        <div class="card">
-          <h2>Welcome</h2>
-          <p>
-            Welcome back to your game hub.  
-            Launch games, tweak settings, or waste time efficiently.
-          </p>
-        </div>
+<header>
+  <div class="logo">YOUR HUB</div>
+  <nav>
+    <span>🎮 GAMES</span>
+    <span>📦 APPS</span>
+    <span>📑 TABS</span>
+    <span>⚙ SETTINGS</span>
+  </nav>
+</header>
 
-        <div class="card">
-          <div class="profile">
-            <img src="profile.jpg" alt="Profile Picture">
-            <div>
-              <h3>YourUsername</h3>
-              <p>
-                Gamer • Developer • Chaos enjoyer<br>
-                Status: Online
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<main class="hero">
+  <h1>INTERSTELLAR</h1>
+  <p>Made by YourUsername</p>
 
-    <!-- GAMES -->
-    <section id="games" class="tab">
-      <div class="card">
-        <h2>Games</h2>
+  <div class="search">
+    <input type="text" placeholder="Search or enter a URL">
+  </div>
+</main>
 
-        <div class="game-grid">
-          <div class="game-card" onclick="launchGame('Game One')">
-            <h3>Game One</h3>
-            <p>Fast-paced arcade action.</p>
-          </div>
+<div class="waves">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
 
-          <div class="game-card" onclick="launchGame('Game Two')">
-            <h3>Game Two</h3>
-            <p>Puzzle-based brain melter.</p>
-          </div>
-
-          <div class="game-card" onclick="launchGame('Game Three')">
-            <h3>Game Three</h3>
-            <p>Chill vibes, high scores.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CASINO -->
-    <section id="casino" class="tab">
-      <div class="card">
-        <h2>Casino</h2>
-        <p>Coming soon. You will lose money here.</p>
-      </div>
-    </section>
-
-    <!-- SETTINGS -->
-    <section id="settings" class="tab">
-      <div class="card">
-        <h2>Settings</h2>
-        <p>Theme, controls, saves, and power-user stuff.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 Game Hub
-  </footer>
-
-  <script>
-    function openTab(tabId) {
-      document.querySelectorAll('.tab').forEach(tab =>
-        tab.classList.remove('active')
-      );
-
-      document.querySelectorAll('nav button').forEach(btn =>
-        btn.classList.remove('active')
-      );
-
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    function launchGame(gameName) {
-      alert("Launching " + gameName + "...");
-    }
-  </script>
 </body>
 </html>
