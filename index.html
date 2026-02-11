@@ -7,11 +7,11 @@
 
   <style>
     :root {
-      --black: #080705;
-      --charcoal: #40434e;
-      --wine: #702632;
-      --rose: #912f40;
-      --porcelain: #fffffa;
+      --powder: #98c1d9;
+      --slate: #6969b3;
+      --indigo: #533a7b;
+      --blackberry: #4b244a;
+      --coffee: #25171a;
     }
 
     * {
@@ -21,12 +21,12 @@
 
     body {
       margin: 0;
-      background: var(--black);
-      color: var(--porcelain);
+      background: var(--coffee);
+      color: var(--powder);
     }
 
     header {
-      background: var(--charcoal);
+      background: var(--blackberry);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -35,8 +35,8 @@
 
     header h1 {
       margin: 0;
-      color: var(--porcelain);
       font-size: 1.4rem;
+      color: var(--powder);
     }
 
     nav {
@@ -47,17 +47,17 @@
     nav button {
       background: transparent;
       border: none;
-      color: var(--porcelain);
+      color: var(--powder);
       cursor: pointer;
-      font-size: 1rem;
       padding: 0.5rem 0.75rem;
       border-radius: 6px;
+      font-size: 1rem;
       transition: background 0.2s;
     }
 
     nav button:hover,
     nav button.active {
-      background: var(--wine);
+      background: var(--indigo);
     }
 
     main {
@@ -73,29 +73,67 @@
     }
 
     .card {
-      background: var(--charcoal);
+      background: var(--blackberry);
       padding: 1.5rem;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-top: 1rem;
     }
 
     .card h2 {
-      color: var(--rose);
       margin-top: 0;
+      color: var(--slate);
+    }
+
+    /* ===== GAME CARDS ===== */
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .game-card {
+      background: var(--indigo);
+      border-radius: 14px;
+      padding: 1.5rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border 0.25s ease;
+    }
+
+    .game-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--powder);
+    }
+
+    .game-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #d8e8f0;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border: 2px solid var(--powder);
+      box-shadow: 0 12px 30px rgba(152, 193, 217, 0.25);
     }
 
     footer {
       text-align: center;
       padding: 1rem;
-      color: #aaa;
       font-size: 0.85rem;
+      color: #aaa;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>🎮 WebHub V1 🎮</h1>
+    <h1>🎮 YourUsername's Game Hub</h1>
     <nav>
       <button class="active" onclick="openTab('home')">Home</button>
       <button onclick="openTab('games')">Games</button>
@@ -108,33 +146,49 @@
     <section id="home" class="tab active">
       <div class="card">
         <h2>Welcome</h2>
-        <p>This is your personal game hub. Launch games, mess with settings, or risk it all in the casino tab 😏</p>
+        <p>Your personal hub for games, chaos, and future bad casino decisions.</p>
       </div>
     </section>
 
     <section id="games" class="tab">
       <div class="card">
         <h2>Games</h2>
-        <p>Put your games here.</p>
-        <ul>
-          <li>Game 1</li>
-          <li>Game 2</li>
-          <li>Game 3</li>
-        </ul>
+
+        <div class="game-grid">
+          <div class="game-card" onclick="launchGame('Game 1')">
+            <h3>Game One</h3>
+            <p>Fast-paced arcade action.</p>
+          </div>
+
+          <div class="game-card" onclick="launchGame('Game 2')">
+            <h3>Game Two</h3>
+            <p>Puzzle-based brain melter.</p>
+          </div>
+
+          <div class="game-card" onclick="launchGame('Game 3')">
+            <h3>Game Three</h3>
+            <p>Chill vibes, high scores.</p>
+          </div>
+
+          <div class="game-card" onclick="launchGame('Game 4')">
+            <h3>Game Four</h3>
+            <p>Experimental / secret 👀</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="casino" class="tab">
       <div class="card">
         <h2>Casino</h2>
-        <p>Coming soon: slots, blackjack, roulette, and questionable decisions.</p>
+        <p>Coming soon. Odds not in your favor.</p>
       </div>
     </section>
 
     <section id="settings" class="tab">
       <div class="card">
         <h2>Settings</h2>
-        <p>Customize your hub, toggle themes, manage saves, etc.</p>
+        <p>Theme tweaks, saves, and other power-user stuff.</p>
       </div>
     </section>
   </main>
@@ -145,18 +199,22 @@
 
   <script>
     function openTab(tabId) {
-      document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
+      document.querySelectorAll('.tab').forEach(tab =>
+        tab.classList.remove('active')
+      );
 
-      document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('active');
-      });
+      document.querySelectorAll('nav button').forEach(btn =>
+        btn.classList.remove('active')
+      );
 
       document.getElementById(tabId).classList.add('active');
       event.target.classList.add('active');
     }
+
+    function launchGame(gameName) {
+      alert("Launching " + gameName + "...");
+      // later: window.location.href = `games/${gameName}.html`
+    }
   </script>
 </body>
 </html>
-
