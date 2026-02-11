@@ -22,7 +22,7 @@
     body {
       margin: 0;
       background: var(--coffee);
-      color: var(--smoke);
+      color: var(--alabaster);
     }
 
     header {
@@ -52,7 +52,6 @@
       padding: 0.5rem 0.75rem;
       border-radius: 6px;
       font-size: 1rem;
-      transition: background 0.2s;
     }
 
     nav button:hover,
@@ -72,30 +71,45 @@
       display: block;
     }
 
+    /* ===== DARK CARDS ===== */
+
     .card {
-      background: var(--smoke);
+      background: #1e1417;
+      border: 1px solid #2c1d22;
       padding: 1.5rem;
-      border-radius: 12px;
-      margin-top: 1rem;
-      color: var(--coffee);
+      border-radius: 14px;
     }
 
     .card h2 {
       margin-top: 0;
-      color: var(--indigo);
+      color: var(--smoke);
+    }
+
+    /* ===== HOME LAYOUT ===== */
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .home-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ===== PROFILE ===== */
 
     .profile {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.2rem;
       align-items: center;
     }
 
     .profile img {
-      width: 96px;
-      height: 96px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--slate);
@@ -103,13 +117,13 @@
 
     .profile h3 {
       margin: 0;
-      color: var(--indigo);
+      color: var(--smoke);
     }
 
     .profile p {
-      margin: 0.3rem 0 0;
-      color: #444;
-      font-size: 0.95rem;
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
+      color: var(--alabaster);
     }
 
     /* ===== GAME CARDS ===== */
@@ -127,10 +141,7 @@
       padding: 1.5rem;
       cursor: pointer;
       border: 2px solid transparent;
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
     }
 
     .game-card h3 {
@@ -147,14 +158,14 @@
     .game-card:hover {
       transform: translateY(-8px) scale(1.02);
       border: 2px solid var(--slate);
-      box-shadow: 0 12px 30px rgba(105, 105, 179, 0.35);
+      box-shadow: 0 12px 30px rgba(105, 105, 179, 0.4);
     }
 
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.85rem;
-      color: var(--alabaster);
+      color: #aaa;
     }
   </style>
 </head>
@@ -171,22 +182,33 @@
   </header>
 
   <main>
+    <!-- HOME -->
     <section id="home" class="tab active">
-      <div class="card">
-        <div class="profile">
-          <img src="profile.jpg" alt="Profile Picture" />
-          <div>
-            <h3>YourUsername</h3>
-            <p>
-              Gamer • Developer • Chaos enthusiast  
-              <br />
-              Welcome to my personal game hub.
-            </p>
+      <div class="home-grid">
+        <div class="card">
+          <h2>Welcome</h2>
+          <p>
+            Welcome back to your game hub.  
+            Launch games, tweak settings, or waste time efficiently.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="profile">
+            <img src="profile.jpg" alt="Profile Picture">
+            <div>
+              <h3>YourUsername</h3>
+              <p>
+                Gamer • Developer • Chaos enjoyer<br>
+                Status: Online
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- GAMES -->
     <section id="games" class="tab">
       <div class="card">
         <h2>Games</h2>
@@ -206,26 +228,23 @@
             <h3>Game Three</h3>
             <p>Chill vibes, high scores.</p>
           </div>
-
-          <div class="game-card" onclick="launchGame('Game Four')">
-            <h3>Game Four</h3>
-            <p>Experimental / secret 👀</p>
-          </div>
         </div>
       </div>
     </section>
 
+    <!-- CASINO -->
     <section id="casino" class="tab">
       <div class="card">
         <h2>Casino</h2>
-        <p>Coming soon. House always wins.</p>
+        <p>Coming soon. You will lose money here.</p>
       </div>
     </section>
 
+    <!-- SETTINGS -->
     <section id="settings" class="tab">
       <div class="card">
         <h2>Settings</h2>
-        <p>Customize themes, controls, and saves.</p>
+        <p>Theme, controls, saves, and power-user stuff.</p>
       </div>
     </section>
   </main>
