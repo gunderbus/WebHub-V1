@@ -7,10 +7,10 @@
 
   <style>
     :root {
-      --powder: #98c1d9;
+      --alabaster: #d9d9d9;
       --slate: #6969b3;
       --indigo: #533a7b;
-      --blackberry: #4b244a;
+      --smoke: #eff2ef;
       --coffee: #25171a;
     }
 
@@ -22,11 +22,11 @@
     body {
       margin: 0;
       background: var(--coffee);
-      color: var(--powder);
+      color: var(--smoke);
     }
 
     header {
-      background: var(--blackberry);
+      background: var(--indigo);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -36,7 +36,7 @@
     header h1 {
       margin: 0;
       font-size: 1.4rem;
-      color: var(--powder);
+      color: var(--smoke);
     }
 
     nav {
@@ -47,7 +47,7 @@
     nav button {
       background: transparent;
       border: none;
-      color: var(--powder);
+      color: var(--smoke);
       cursor: pointer;
       padding: 0.5rem 0.75rem;
       border-radius: 6px;
@@ -57,7 +57,7 @@
 
     nav button:hover,
     nav button.active {
-      background: var(--indigo);
+      background: var(--slate);
     }
 
     main {
@@ -73,15 +73,43 @@
     }
 
     .card {
-      background: var(--blackberry);
+      background: var(--smoke);
       padding: 1.5rem;
       border-radius: 12px;
       margin-top: 1rem;
+      color: var(--coffee);
     }
 
     .card h2 {
       margin-top: 0;
-      color: var(--slate);
+      color: var(--indigo);
+    }
+
+    /* ===== PROFILE ===== */
+
+    .profile {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .profile img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--slate);
+    }
+
+    .profile h3 {
+      margin: 0;
+      color: var(--indigo);
+    }
+
+    .profile p {
+      margin: 0.3rem 0 0;
+      color: #444;
+      font-size: 0.95rem;
     }
 
     /* ===== GAME CARDS ===== */
@@ -107,26 +135,26 @@
 
     .game-card h3 {
       margin: 0 0 0.5rem;
-      color: var(--powder);
+      color: var(--smoke);
     }
 
     .game-card p {
       margin: 0;
       font-size: 0.9rem;
-      color: #d8e8f0;
+      color: var(--alabaster);
     }
 
     .game-card:hover {
       transform: translateY(-8px) scale(1.02);
-      border: 2px solid var(--powder);
-      box-shadow: 0 12px 30px rgba(152, 193, 217, 0.25);
+      border: 2px solid var(--slate);
+      box-shadow: 0 12px 30px rgba(105, 105, 179, 0.35);
     }
 
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.85rem;
-      color: #aaa;
+      color: var(--alabaster);
     }
   </style>
 </head>
@@ -145,8 +173,17 @@
   <main>
     <section id="home" class="tab active">
       <div class="card">
-        <h2>Welcome</h2>
-        <p>Your personal hub for games, chaos, and future bad casino decisions.</p>
+        <div class="profile">
+          <img src="profile.jpg" alt="Profile Picture" />
+          <div>
+            <h3>YourUsername</h3>
+            <p>
+              Gamer • Developer • Chaos enthusiast  
+              <br />
+              Welcome to my personal game hub.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -155,22 +192,22 @@
         <h2>Games</h2>
 
         <div class="game-grid">
-          <div class="game-card" onclick="launchGame('Game 1')">
+          <div class="game-card" onclick="launchGame('Game One')">
             <h3>Game One</h3>
             <p>Fast-paced arcade action.</p>
           </div>
 
-          <div class="game-card" onclick="launchGame('Game 2')">
+          <div class="game-card" onclick="launchGame('Game Two')">
             <h3>Game Two</h3>
             <p>Puzzle-based brain melter.</p>
           </div>
 
-          <div class="game-card" onclick="launchGame('Game 3')">
+          <div class="game-card" onclick="launchGame('Game Three')">
             <h3>Game Three</h3>
             <p>Chill vibes, high scores.</p>
           </div>
 
-          <div class="game-card" onclick="launchGame('Game 4')">
+          <div class="game-card" onclick="launchGame('Game Four')">
             <h3>Game Four</h3>
             <p>Experimental / secret 👀</p>
           </div>
@@ -181,14 +218,14 @@
     <section id="casino" class="tab">
       <div class="card">
         <h2>Casino</h2>
-        <p>Coming soon. Odds not in your favor.</p>
+        <p>Coming soon. House always wins.</p>
       </div>
     </section>
 
     <section id="settings" class="tab">
       <div class="card">
         <h2>Settings</h2>
-        <p>Theme tweaks, saves, and other power-user stuff.</p>
+        <p>Customize themes, controls, and saves.</p>
       </div>
     </section>
   </main>
@@ -213,7 +250,6 @@
 
     function launchGame(gameName) {
       alert("Launching " + gameName + "...");
-      // later: window.location.href = `games/${gameName}.html`
     }
   </script>
 </body>
