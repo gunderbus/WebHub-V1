@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GUNDERBUS HUB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- HEADER -->
+<header>
+  <div class="logo">GUNDERBUS HUB</div>
+  <nav>
+    <span class="active" onclick="openPage('home', this)">HOME</span>
+    <span onclick="openPage('games', this)">🎮 GAMES</span>
+    <span onclick="openPage('casino', this)">🎰 CASINO</span>
+    <span onclick="openPage('settings', this)">⚙ SETTINGS</span>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page active hero">
+  <h1>GUNDERBUS</h1>
+  <p>Made by the gunderbus</p>
+</section>
+
+<!-- GAMES -->
+<section id="games" class="page">
+  <h2 class="section-title">GAMES</h2>
+  <p class="section-sub">Select a game to launch</p>
+
+  <div class="grid">
+    <div class="tile"><h3>Game One</h3><p>Arcade action</p></div>
+    <div class="tile"><h3>Game Two</h3><p>Puzzle</p></div>
+    <div class="tile"><h3>Game Three</h3><p>Chill vibes</p></div>
+  </div>
+</section>
+
+<!-- CASINO -->
+<section id="casino" class="page">
+  <h2 class="section-title">CASINO</h2>
+  <p class="section-sub">The house always wins</p>
+
+  <div class="grid">
+    <div class="tile"><h3>Slots</h3><p>Spin to win</p></div>
+    <div class="tile"><h3>Blackjack</h3><p>21 or bust</p></div>
+    <div class="tile"><h3>Roulette</h3><p>Red or black</p></div>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+  <h2 class="section-title">SETTINGS</h2>
+  <p class="section-sub">Customize your experience</p>
+</section>
+
+<div class="waves">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

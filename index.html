@@ -1,67 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>GUNDERBUS HUB</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Login — GUNDERBUS HUB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .auth-wrapper {
+      min-height: 100vh;
+      padding-top: 7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
-<link rel="stylesheet" href="style.css">
+    .auth-card {
+      width: min(420px, 92%);
+      background: var(--bg-soft);
+      padding: 2rem;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+      transition: transform 0.25s, border 0.25s, box-shadow 0.25s;
+    }
+
+    .auth-card:hover {
+      transform: translateY(-6px);
+      border: 1px solid var(--accent);
+      box-shadow: 0 25px 60px rgba(105,105,179,0.18);
+    }
+
+    .auth-card h2 {
+      margin: 0 0 0.25rem 0;
+      letter-spacing: 0.12em;
+    }
+
+    .auth-card .section-sub {
+      margin-bottom: 1.25rem;
+      color: var(--muted);
+    }
+
+    .auth-card form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .auth-card input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: #0f0f12;
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.98rem;
+      outline: none;
+    }
+
+    .auth-card input:focus {
+      box-shadow: 0 6px 24px rgba(105,105,179,0.08);
+      border-color: var(--accent);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), #5454a8);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(105,105,179,0.22);
+    }
+
+    .auth-card .muted {
+      margin-top: 0.9rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .auth-card a {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    @media (max-height: 620px) {
+      .waves { position: relative; height: 18vh; }
+    }
+  </style>
 </head>
-
 <body>
-<!-- HEADER -->
-<header>
-  <div class="logo">GUNDERBUS HUB</div>
-  <nav>
-    <span class="active" onclick="openPage('home', this)">HOME</span>
-    <span onclick="openPage('games', this)">🎮 GAMES</span>
-    <span onclick="openPage('casino', this)">🎰 CASINO</span>
-    <span onclick="openPage('settings', this)">⚙ SETTINGS</span>
-  </nav>
-</header>
+  <header>
+    <div class="logo">GUNDERBUS HUB</div>
+    <nav>
+      <span onclick="openPage('home', this)">HOME</span>
+      <span onclick="openPage('games', this)">🎮 GAMES</span>
+      <span onclick="openPage('casino', this)">🎰 CASINO</span>
+      <span onclick="openPage('settings', this)">⚙ SETTINGS</span>
+      <span class="active">LOGIN</span>
+    </nav>
+  </header>
 
-<!-- HOME -->
-<section id="home" class="page active hero">
-  <h1>GUNDERBUS</h1>
-  <p>Made by the gunderbus</p>
-</section>
+  <section id="login" class="page active">
+    <div class="auth-wrapper">
+      <div class="auth-card" role="region" aria-labelledby="loginHeading">
+        <h2 id="loginHeading">Welcome back</h2>
+        <p class="section-sub">Sign in to your GUNDERBUS account</p>
 
-<!-- GAMES -->
-<section id="games" class="page">
-  <h2 class="section-title">GAMES</h2>
-  <p class="section-sub">Select a game to launch</p>
+        <form id="loginForm" action="#" method="post" novalidate>
+          <input type="text" name="username" placeholder="Username or email" autocomplete="username" id="usernameInput" required />
+          <input type="password" name="password" placeholder="Password" autocomplete="current-password" id="passwordInput" required />
+          <button class="btn-primary" type="submit">Sign in</button>
+        </form>
 
-  <div class="grid">
-    <div class="tile"><h3>Game One</h3><p>Arcade action</p></div>
-    <div class="tile"><h3>Game Two</h3><p>Puzzle</p></div>
-    <div class="tile"><h3>Game Three</h3><p>Chill vibes</p></div>
+        <p class="muted">Don't have an account? <a href="signup.html">Get started</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
   </div>
-</section>
 
-<!-- CASINO -->
-<section id="casino" class="page">
-  <h2 class="section-title">CASINO</h2>
-  <p class="section-sub">The house always wins</p>
+  <script src="script.js"></script>
+  <script>
+    // Small helper to keep nav behavior consistent with index
+    function openPage(id, el) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(p => p.classList.remove('active'));
+      document.getElementById(id)?.classList.add('active');
 
-  <div class="grid">
-    <div class="tile"><h3>Slots</h3><p>Spin to win</p></div>
-    <div class="tile"><h3>Blackjack</h3><p>21 or bust</p></div>
-    <div class="tile"><h3>Roulette</h3><p>Red or black</p></div>
-  </div>
-</section>
+      document.querySelectorAll('nav span').forEach(s => s.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
 
-<!-- SETTINGS -->
-<section id="settings" class="page">
-  <h2 class="section-title">SETTINGS</h2>
-  <p class="section-sub">Customize your experience</p>
-</section>
-
-<div class="waves">
-  <div class="wave"></div>
-  <div class="wave"></div>
-</div>
-
-<script src="script.js"></script>
-
+    // Prevent default submit for demo
+    document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Demo login — replace with real auth flow.');
+    });
+  </script>
 </body>
 </html>
