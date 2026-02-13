@@ -115,6 +115,7 @@ nav span:hover {
   outline: none;
 }
 
+
 /* ===== SECTION HEADERS ===== */
 
 .section-title {
@@ -135,7 +136,7 @@ nav span:hover {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   width: min(1000px, 90%);
-  margin: 0 auto;
+  margin: 0 auto 4rem;
 }
 
 .tile {
