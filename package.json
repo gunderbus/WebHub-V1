@@ -1,0 +1,24 @@
+{
+  "name": "webhub-v1-1",
+  "version": "1.0.0",
+  "description": "Online web game site, with thousands of the games to visit and play with. Casino functions with fake money, make an SQL file for the leaderboard data to connect to :).",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunderbus/WebHub-V1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gunderbus/WebHub-V1/issues"
+  },
+  "homepage": "https://github.com/gunderbus/WebHub-V1#readme",
+  "dependencies": {
+    "mongodb": "^7.1.0"
+  }
+}
